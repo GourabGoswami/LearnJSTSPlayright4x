@@ -1,0 +1,10 @@
+let e=2;
+let f="2";
+console.log(e==f);
+console.log(e===f);
+console.log(0=="");
+console.log(5!=="5");
+console.log(5!="5");
+console.log(0=="0");
+console.log(0==="0");
+console.log("0"=="");
