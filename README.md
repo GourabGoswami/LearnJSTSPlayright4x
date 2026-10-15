@@ -43,7 +43,13 @@ Examples in `Chapter_06_Statements/` cover:
 
 - `IF.js`: nested `if` statements and an example score-grade selection.
 - `Switch.js`: `switch`/`case` selection for days and a second switch example.
+
+### Chapter 7: User Input Ways
+
+Examples in `Chapter_07_UserInputWays/` cover:
+
 - `UserInput.js`: reads a number with the browser's `prompt()` and reports whether it is even or odd.
+- `PromptSync.js`: reads a number from the terminal with `prompt-sync` and reports whether it is even or odd.
 
 ## Running the examples
 
@@ -55,6 +61,18 @@ node .\Chapter_4_Operators\IncrementOperatorTask.js
 node .\Chapter_06_Statements\Switch.js
 ```
 
-`UserInput.js` uses `prompt()`, which is provided by a browser rather than Node.js. Open that file in a browser-based JavaScript environment to enter a number and see the result.
+To install the dependency used by `PromptSync.js`, run this from the repository root in PowerShell:
+
+```powershell
+npm.cmd install
+```
+
+Then run it with:
+
+```powershell
+node .\Chapter_07_UserInputWays\PromptSync.js
+```
+
+`Chapter_07_UserInputWays\UserInput.js` uses `prompt()`, which is provided by a browser rather than Node.js. Open that file in a browser-based JavaScript environment to enter a number and see the result.
 
 These are individual learning examples; there is no shared application entry point or automated test suite.

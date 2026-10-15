@@ -1,0 +1,23 @@
+{
+  "name": "learnjstsplaywright",
+  "version": "1.0.0",
+  "description": "A collection of small, runnable JavaScript examples organized by topic. The files demonstrate language basics and operators, followed by conditional statements and user input.",
+  "homepage": "https://github.com/GourabGoswami/LearnJSTSPlayright4x#readme",
+  "bugs": {
+    "url": "https://github.com/GourabGoswami/LearnJSTSPlayright4x/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GourabGoswami/LearnJSTSPlayright4x.git"
+  },
+  "license": "ISC",
+  "author": "Gourab",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  }
+}

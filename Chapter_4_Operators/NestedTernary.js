@@ -13,3 +13,11 @@ let tempStatus=(temp>35?"Hot":
     (temp>25?"Warm":
         (temp>15?"Cool":"Cold")));
 console.log(tempStatus);
+
+
+
+
+
+
+
+

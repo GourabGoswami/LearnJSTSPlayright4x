@@ -21,7 +21,7 @@ switch (day) {
 }
 
 
-let x=2
+let x = 2
 switch (x) {
     case 2: console.log("One");
         break;
@@ -30,3 +30,15 @@ switch (x) {
 
     default: console.log("Invalid number");
 }
+
+let browser = "Chrome";
+switch (browser) {
+    case "Chrome":
+    case "Edge":
+    case "IE":
+        console.log("IE browser");
+        break;
+    case "fire": console.log("fire");
+        break;
+    default: console.log("nobrowser");
+}     
