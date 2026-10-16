@@ -1,6 +1,6 @@
 # Learn JavaScript
 
-A collection of small, runnable JavaScript examples organized by topic. The files demonstrate language basics and operators, followed by conditional statements and user input.
+A collection of small, runnable JavaScript examples organized by topic. The files demonstrate language basics and operators, followed by conditional statements, user input, and loops.
 
 ## Contents
 
@@ -50,6 +50,13 @@ Examples in `Chapter_07_UserInputWays/` cover:
 
 - `UserInput.js`: reads a number with the browser's `prompt()` and reports whether it is even or odd.
 - `PromptSync.js`: reads a number from the terminal with `prompt-sync` and reports whether it is even or odd.
+
+### Chapter 7: Loops
+
+Examples in `Chapter_7_Loops/` cover:
+
+- `Loop.js`: demonstrates `for`, `while`, and `do...while` loops, including their conditions and execution behavior.
+- `Break.js`: demonstrates using `break` to exit a `while` loop.
 
 ## Running the examples
 
