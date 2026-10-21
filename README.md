@@ -1,6 +1,6 @@
 # Learn JavaScript
 
-A collection of small, runnable JavaScript examples organized by topic. The files demonstrate language basics and operators, followed by conditional statements, user input, and loops.
+A collection of small JavaScript examples organized by topic. The files demonstrate language basics and operators, conditional statements, user input, loops, and arrays.
 
 ## Contents
 
@@ -58,6 +58,21 @@ Examples in `Chapter_7_Loops/` cover:
 - `Loop.js`: demonstrates `for`, `while`, and `do...while` loops, including their conditions and execution behavior.
 - `Break.js`: demonstrates using `break` to exit a `while` loop.
 
+### Chapter 8: Arrays
+
+Examples in `Chapter_8_Arrays/` cover:
+
+- `Arrays.js`: creates and accesses arrays, updates elements, and demonstrates `push`, `pop`, `shift`, `unshift`, and `splice`. It also shows that bracket access with a negative index does not retrieve the last element, while `at(-1)` does.
+- `Array_Check.js`: uses `Array.isArray()` to check whether values are arrays.
+- `Array_Copy.js`: compares independent copies made with the spread operator and `slice()` with a second variable that references the same array.
+- `Slicing.js`: uses `slice()` with start, end, and negative indexes to create portions of an array without changing the original.
+- `Searching.js`: demonstrates `includes`, `indexOf`, `lastIndexOf`, `find`, and `findIndex`.
+- `Iterate.js`: iterates through an array with a `for` loop.
+- `Every.js`: demonstrates `every()` and `some()` for testing array elements.
+- `Sorting.js`: demonstrates `sort()` and `reverse()`, including default string ordering and numeric comparators for ascending and descending order.
+- `swapping.js`: swaps two variables using array destructuring.
+- `transform.js`: demonstrates `forEach`, `map`, `filter`, and `reduce`.
+
 ## Running the examples
 
 Install [Node.js](https://nodejs.org/) to run the console-based examples from the repository root:
@@ -66,6 +81,8 @@ Install [Node.js](https://nodejs.org/) to run the console-based examples from th
 node .\Chapter_1_Basics\HelloWorld.js
 node .\Chapter_4_Operators\IncrementOperatorTask.js
 node .\Chapter_06_Statements\Switch.js
+node .\Chapter_8_Arrays\Array_Check.js
+node .\Chapter_8_Arrays\Slicing.js
 ```
 
 To install the dependency used by `PromptSync.js`, run this from the repository root in PowerShell:
