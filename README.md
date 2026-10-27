@@ -73,6 +73,10 @@ Examples in `Chapter_8_Arrays/` cover:
 - `swapping.js`: swaps two variables using array destructuring.
 - `transform.js`: demonstrates `forEach`, `map`, `filter`, and `reduce`.
 
+### Chapter 9: Functions
+
+- `Chapter_9_Functions/Func.js` demonstrates function declarations, arrow functions, function expressions, parameters and return values, immediately invoked function expressions (IIFEs), local scope, and closures. Its `multiply` example calls a `const` arrow function before its initialization, so running the file as-is throws a `ReferenceError` at that call and does not execute the later examples.
+
 ## Running the examples
 
 Install [Node.js](https://nodejs.org/) to run the console-based examples from the repository root:
@@ -83,6 +87,7 @@ node .\Chapter_4_Operators\IncrementOperatorTask.js
 node .\Chapter_06_Statements\Switch.js
 node .\Chapter_8_Arrays\Array_Check.js
 node .\Chapter_8_Arrays\Slicing.js
+node .\Chapter_9_Functions\Func.js
 ```
 
 To install the dependency used by `PromptSync.js`, run this from the repository root in PowerShell:

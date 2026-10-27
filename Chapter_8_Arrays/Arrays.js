@@ -29,7 +29,6 @@ console.log(browsers); // Output: [ 'Firefox', 'Safari', 'Edge', 'Opera' ]
 browsers.unshift("Chrome"); // Adds "Chrome" to the beginning of the array
 console.log(browsers); // Output: [ 'Chrome', 'Firefox', 'Safari', 'Edge', 'Opera' ]
 
-
 let arr1 = [1, 2, 3, 4, 5];
 arr1.splice(2, 1); // Removes 1 element at index 2 ("Safari")
 console.log(arr1); // Output: [ 1, 2, 4, 5 ]
@@ -38,3 +37,8 @@ console.log(arr1); // Output: [ 1, 2, 3, 4, 5 ]
 arr1.splice(2, 1, 6); // Replaces the element at index 2 with "6"
 console.log(arr1); // Output: [ 1, 2, 6, 4, 5 ]
 arr1.splice(2, 1, 3, 4); // replaces and Adds "3" and "4" at index 2 without removing any elements
+
+
+const tags = ["smoke", "regression"];
+console.log(tags.includes("smoke"));
+console.log(tags.indexOf("sanity"));
