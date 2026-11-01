@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A simple, visual explanation of references, shallow copies, and deep copies in JavaScript.">
+  <title>JavaScript Object Copying — A Visual ELI5</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #172033;
+      --muted: #526078;
+      --paper: #f5f7fb;
+      --card: #ffffff;
+      --blue: #2563eb;
+      --blue-soft: #eaf1ff;
+      --purple: #7546c8;
+      --purple-soft: #f1eaff;
+      --green: #16794b;
+      --green-soft: #e8f7ef;
+      --line: #d7deeb;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    main {
+      width: min(100% - 2rem, 1000px);
+      margin: 0 auto;
+      padding: 3rem 0 4rem;
+    }
+
+    .hero,
+    .panel,
+    .step {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgb(23 32 51 / 5%);
+    }
+
+    .hero {
+      padding: clamp(1.5rem, 5vw, 3rem);
+      border-top: 6px solid var(--blue);
+    }
+
+    .eyebrow {
+      margin: 0 0 .4rem;
+      color: var(--blue);
+      font-size: .8rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.2;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 6vw, 3.25rem);
+    }
+
+    h2 {
+      margin: 0 0 .5rem;
+      font-size: clamp(1.4rem, 4vw, 2rem);
+    }
+
+    h3 {
+      margin: 0 0 .35rem;
+      font-size: 1.1rem;
+    }
+
+    p {
+      margin: .55rem 0 0;
+    }
+
+    .intro {
+      max-width: 700px;
+      margin-top: 1rem;
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+
+    .analogy {
+      margin-top: 1.25rem;
+      padding: 1rem 1.2rem;
+      border-left: 4px solid #f0ad32;
+      border-radius: 0 12px 12px 0;
+      background: #fff8e9;
+    }
+
+    .panel {
+      margin-top: 1.5rem;
+      padding: clamp(1rem, 3vw, 1.75rem);
+    }
+
+    .diagram-wrap {
+      overflow-x: auto;
+      margin-top: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fbfcff;
+    }
+
+    .diagram {
+      display: block;
+      width: 100%;
+      min-width: 680px;
+      height: auto;
+    }
+
+    .diagram text {
+      fill: var(--ink);
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+
+    .diagram .small {
+      fill: var(--muted);
+      font-size: 15px;
+    }
+
+    .diagram .label {
+      font-size: 17px;
+      font-weight: 750;
+    }
+
+    .diagram .value {
+      font-size: 15px;
+    }
+
+    .diagram .name {
+      font-size: 16px;
+      font-weight: 750;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem 1.25rem;
+      margin: 1rem 0 0;
+      padding: 0;
+      color: var(--muted);
+      font-size: .9rem;
+      list-style: none;
+    }
+
+    .legend li {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .swatch {
+      width: 1rem;
+      height: 1rem;
+      border: 2px solid currentColor;
+      border-radius: 4px;
+    }
+
+    .swatch.blue {
+      color: var(--blue);
+      background: var(--blue-soft);
+    }
+
+    .swatch.purple {
+      color: var(--purple);
+      background: var(--purple-soft);
+    }
+
+    .swatch.green {
+      color: var(--green);
+      background: var(--green-soft);
+    }
+
+    .steps {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .step {
+      padding: 1.25rem;
+    }
+
+    .step-heading {
+      display: flex;
+      align-items: flex-start;
+      gap: .85rem;
+    }
+
+    .number {
+      display: grid;
+      flex: 0 0 2rem;
+      width: 2rem;
+      height: 2rem;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--blue-soft);
+      color: var(--blue);
+      font-weight: 800;
+    }
+
+    .step p,
+    .step ul {
+      color: var(--muted);
+    }
+
+    code {
+      padding: .12rem .35rem;
+      border-radius: 5px;
+      background: #eef1f7;
+      color: #23304a;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: .92em;
+    }
+
+    pre {
+      overflow-x: auto;
+      margin: 1rem 0 0;
+      padding: 1rem;
+      border-radius: 12px;
+      background: #172033;
+      color: #f3f6ff;
+      font-size: .9rem;
+      line-height: 1.65;
+    }
+
+    pre code {
+      padding: 0;
+      background: transparent;
+      color: inherit;
+    }
+
+    .result {
+      margin-top: 1rem;
+      padding: .85rem 1rem;
+      border-radius: 10px;
+      background: var(--green-soft);
+      color: #125b39;
+    }
+
+    .takeaway {
+      margin-top: 1.5rem;
+      padding: 1.25rem;
+      border: 2px solid #b9d1ff;
+      border-radius: 14px;
+      background: var(--blue-soft);
+    }
+
+    .takeaway p {
+      margin-top: .35rem;
+    }
+
+    footer {
+      margin-top: 1.5rem;
+      color: var(--muted);
+      font-size: .9rem;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      main {
+        width: min(100% - 1rem, 1000px);
+        padding-top: 1rem;
+      }
+
+      .hero,
+      .panel,
+      .step {
+        border-radius: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header class="hero">
+      <p class="eyebrow">A visual ELI5</p>
+      <h1>JavaScript Object Copying</h1>
+      <p class="intro">
+        This script shows what happens when two names point to the same object,
+        when we make a shallow copy, and when we make a deep copy.
+      </p>
+      <div class="analogy">
+        <strong>Imagine objects are boxes.</strong>
+        A variable is a name tag pointing to a box. Some copies make a new
+        outside box but keep sharing a smaller box inside it.
+      </div>
+    </header>
+
+    <section class="panel" aria-labelledby="diagram-title">
+      <h2 id="diagram-title">The final picture</h2>
+      <p>
+        After all the script's changes, these names and boxes are connected
+        like this. Arrows show what each name points to.
+      </p>
+      <div class="diagram-wrap">
+        <svg class="diagram" viewBox="0 0 900 440" role="img" aria-labelledby="svg-title svg-desc">
+          <title id="svg-title">Diagram of shared and copied JavaScript objects</title>
+          <desc id="svg-desc">
+            Names a and b point to the same original object. Name c points to a
+            separate shallow-copy object, but both objects share the same
+            details object. deepCopy points to a separate object with its own
+            separate details object.
+          </desc>
+          <defs>
+            <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+              <path d="M0,0 L10,5 L0,10 z" fill="#2563eb"></path>
+            </marker>
+            <marker id="arrow-purple" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+              <path d="M0,0 L10,5 L0,10 z" fill="#7546c8"></path>
+            </marker>
+            <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+              <path d="M0,0 L10,5 L0,10 z" fill="#16794b"></path>
+            </marker>
+          </defs>
+
+          <text x="35" y="34" class="small">NAMES</text>
+          <text x="250" y="34" class="small">OBJECT BOXES</text>
+          <text x="650" y="34" class="small">NESTED BOXES</text>
+
+          <rect x="35" y="58" width="100" height="42" rx="10" fill="#eaf1ff" stroke="#2563eb" stroke-width="2"></rect>
+          <text x="85" y="85" text-anchor="middle" class="name">a</text>
+          <rect x="35" y="116" width="100" height="42" rx="10" fill="#eaf1ff" stroke="#2563eb" stroke-width="2"></rect>
+          <text x="85" y="143" text-anchor="middle" class="name">b</text>
+          <path d="M135 79 C185 79 190 96 245 96" fill="none" stroke="#2563eb" stroke-width="3" marker-end="url(#arrow-blue)"></path>
+          <path d="M135 137 C185 137 190 111 245 111" fill="none" stroke="#2563eb" stroke-width="3" marker-end="url(#arrow-blue)"></path>
+
+          <rect x="250" y="62" width="245" height="122" rx="13" fill="#eaf1ff" stroke="#2563eb" stroke-width="2"></rect>
+          <text x="270" y="91" class="label">Original object</text>
+          <text x="270" y="120" class="value">status: "pass"</text>
+          <text x="270" y="145" class="value">s: "har"</text>
+          <text x="270" y="170" class="value">details: → shared details</text>
+
+          <rect x="35" y="205" width="100" height="42" rx="10" fill="#f1eaff" stroke="#7546c8" stroke-width="2"></rect>
+          <text x="85" y="232" text-anchor="middle" class="name">c</text>
+          <path d="M135 226 C185 226 190 226 245 226" fill="none" stroke="#7546c8" stroke-width="3" marker-end="url(#arrow-purple)"></path>
+          <rect x="250" y="195" width="245" height="122" rx="13" fill="#f1eaff" stroke="#7546c8" stroke-width="2"></rect>
+          <text x="270" y="224" class="label">Shallow-copy object</text>
+          <text x="270" y="253" class="value">status: "ok"</text>
+          <text x="270" y="278" class="value">s: "har"</text>
+          <text x="270" y="303" class="value">details: → shared details</text>
+
+          <path d="M495 136 C560 136 575 136 640 136" fill="none" stroke="#2563eb" stroke-width="3" marker-end="url(#arrow-blue)"></path>
+          <path d="M495 273 C565 273 575 165 640 165" fill="none" stroke="#7546c8" stroke-width="3" marker-end="url(#arrow-purple)"></path>
+          <rect x="650" y="105" width="220" height="90" rx="13" fill="#fff8e9" stroke="#d99a24" stroke-width="2"></rect>
+          <text x="670" y="134" class="label">Shared details box</text>
+          <text x="670" y="166" class="value">reason: "network error"</text>
+
+          <rect x="35" y="344" width="100" height="42" rx="10" fill="#e8f7ef" stroke="#16794b" stroke-width="2"></rect>
+          <text x="85" y="371" text-anchor="middle" class="name">deepCopy</text>
+          <path d="M135 365 C185 365 190 365 245 365" fill="none" stroke="#16794b" stroke-width="3" marker-end="url(#arrow-green)"></path>
+          <rect x="250" y="330" width="245" height="100" rx="13" fill="#e8f7ef" stroke="#16794b" stroke-width="2"></rect>
+          <text x="270" y="359" class="label">Deep-copy object</text>
+          <text x="270" y="386" class="value">status: "copied"</text>
+          <text x="270" y="412" class="value">details: → its own details</text>
+          <path d="M495 380 C560 380 575 350 640 350" fill="none" stroke="#16794b" stroke-width="3" marker-end="url(#arrow-green)"></path>
+          <rect x="650" y="318" width="220" height="70" rx="13" fill="#e8f7ef" stroke="#16794b" stroke-width="2"></rect>
+          <text x="670" y="347" class="label">Copied details box</text>
+          <text x="670" y="375" class="value">reason: "copied reason"</text>
+        </svg>
+      </div>
+      <ul class="legend" aria-label="Diagram color key">
+        <li><span class="swatch blue" aria-hidden="true"></span>Original object and its names</li>
+        <li><span class="swatch purple" aria-hidden="true"></span>Shallow copy</li>
+        <li><span class="swatch green" aria-hidden="true"></span>Deep copy</li>
+      </ul>
+    </section>
+
+    <section class="steps" aria-label="Script walkthrough">
+      <article class="step">
+        <div class="step-heading">
+          <span class="number" aria-hidden="true">1</span>
+          <div>
+            <h2>Make the first object</h2>
+            <p>
+              <code>a</code> points to a box with a status, a short string, and
+              another box inside called <code>details</code>.
+            </p>
+          </div>
+        </div>
+        <pre><code>let a = {
+  status: "fail",
+  s: "har",
+  details: { reason: "timeout" }
+};</code></pre>
+      </article>
+
+      <article class="step">
+        <div class="step-heading">
+          <span class="number" aria-hidden="true">2</span>
+          <div>
+            <h2><code>b</code> gets the same box</h2>
+            <p>
+              <code>let b = a</code> does not make a new object. Both names
+              point to the same box. So changing <code>b.status</code> also
+              changes what you see through <code>a</code>.
+            </p>
+          </div>
+        </div>
+        <pre><code>let b = a;
+b.status = "pass";
+console.log(a); // status is "pass"; reason is still "timeout"</code></pre>
+      </article>
+
+      <article class="step">
+        <div class="step-heading">
+          <span class="number" aria-hidden="true">3</span>
+          <div>
+            <h2><code>c</code> gets a shallow copy</h2>
+            <p>
+              The spread <code>{ ...a }</code> makes a new outside box. Changing
+              its top-level <code>status</code> affects only <code>c</code>.
+              But the nested <code>details</code> box is still shared.
+            </p>
+          </div>
+        </div>
+        <pre><code>let c = { ...a };
+c.status = "ok"; // a.status stays "pass"
+c.details.reason = "network error"; // a.details.reason changes too
+console.log(a); // status is "pass"; reason is "network error"</code></pre>
+      </article>
+
+      <article class="step">
+        <div class="step-heading">
+          <span class="number" aria-hidden="true">4</span>
+          <div>
+            <h2><code>deepCopy</code> gets its own boxes</h2>
+            <p>
+              <code>structuredClone(a)</code> copies the object and its nested
+              details. Now changing either box inside <code>deepCopy</code>
+              leaves <code>a</code> alone.
+            </p>
+          </div>
+        </div>
+        <pre><code>let deepCopy = structuredClone(a);
+deepCopy.status = "copied";
+deepCopy.details.reason = "copied reason";
+
+console.log(a);        // "pass", "network error"
+console.log(deepCopy); // "copied", "copied reason"</code></pre>
+        <p class="result">
+          The original stays at <strong>status "pass"</strong> and
+          <strong>reason "network error"</strong>. The deep copy has its own
+          values.
+        </p>
+      </article>
+    </section>
+
+    <aside class="takeaway">
+      <h2>The one thing to remember</h2>
+      <p><strong><code>b = a</code>:</strong> two names, one same box.</p>
+      <p><strong><code>{ ...a }</code>:</strong> a new outside box, but nested boxes can still be shared.</p>
+      <p><strong><code>structuredClone(a)</code>:</strong> a new box and new nested boxes, for values it can clone.</p>
+    </aside>
+
+    <footer>
+      Based on <code>Chapter_13_Objects/Objects_Copy.js</code>
+    </footer>
+  </main>
+</body>
+</html>
