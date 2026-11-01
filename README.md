@@ -77,6 +77,14 @@ Examples in `Chapter_8_Arrays/` cover:
 
 - `Chapter_9_Functions/Func.js` demonstrates function declarations, arrow functions, function expressions, parameters and return values, immediately invoked function expressions (IIFEs), local scope, and closures. Its `multiply` example calls a `const` arrow function before its initialization, so running the file as-is throws a `ReferenceError` at that call and does not execute the later examples.
 
+### Chapter 13: Objects
+
+Examples in `Chapter_13_Objects/` cover:
+
+- `Objects.js`: creates an object and reads its properties with dot and bracket notation.
+- `Objects_Copy.js`: compares assigning an object reference, making a shallow copy with spread syntax, and making a deep copy with `structuredClone()`.
+- [`ELI5/Objects_Copy_Explained.html`](ELI5/Objects_Copy_Explained.html): a visual, beginner-friendly walkthrough of how those copies and their nested objects behave.
+
 ## Running the examples
 
 Install [Node.js](https://nodejs.org/) to run the console-based examples from the repository root:
