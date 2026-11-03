@@ -5,6 +5,8 @@ console.log("a".charCodeAt(0)); // 97
 console.log("z".charCodeAt(0)); // 122
 
 let a = "abcdef"; // Store a string so the following examples can demonstrate string methods.
+//console.log(a.split("").reverse().join("")); // Reverse the string: "fedcba".
+console.log(a.split(""));
 console.log(a.at(-5)); // Read the character five positions from the end: "b".
 console.log(a.at(-10)); // The index is before the start of the string, so at() returns undefined.
 console.log(a.indexOf(10)); // Search for "10" (the number is converted to text); it is absent, so the result is -1.

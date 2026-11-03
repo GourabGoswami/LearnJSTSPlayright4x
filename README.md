@@ -1,6 +1,6 @@
 # Learn JavaScript
 
-A collection of small JavaScript examples organized by topic. The files demonstrate language basics and operators, conditional statements, user input, loops, and arrays.
+A collection of JavaScript examples organized by topic, covering language fundamentals, operators, control flow, user input, variables and scope, closures, strings, arrays, functions, and objects. The repository also includes a visual object-copying guide and an ELI5 Claude Code skill with an evaluation workspace.
 
 ## Contents
 
@@ -76,6 +76,28 @@ Examples in `Chapter_8_Arrays/` cover:
 ### Chapter 9: Functions
 
 - `Chapter_9_Functions/Func.js` demonstrates function declarations, arrow functions, function expressions, parameters and return values, immediately invoked function expressions (IIFEs), local scope, and closures. Its `multiply` example calls a `const` arrow function before its initialization, so running the file as-is throws a `ReferenceError` at that call and does not execute the later examples.
+- `Chapter_9_Functions/SpecialFunc.js` demonstrates rest parameters, spreading an array into a function call, and using `some()` to check a list of status codes.
+
+### Chapter 10: Variables, scope, and hoisting
+
+Examples in `Chapter_10_var_vs_Let_vs_Const_Vs_Hoisting/` cover:
+
+- `var_let_const.js`: compares how `var` and `let` behave in function and block scopes.
+- `var_Hoisting.js`: shows that a `var` declaration is available as `undefined` before its assignment.
+- `let_hoisting.js`: demonstrates the temporal dead zone; accessing a `let` variable before its declaration throws a `ReferenceError` and stops the script.
+
+### Chapter 11: Closures
+
+- `Chapter_11_Closure/CLosure.js` returns an inner function that retains access to a variable from its outer function. It logs the captured value, then its final call to the out-of-scope `installBrowser` name throws a `ReferenceError`.
+
+### Chapter 12: Strings and regular expressions
+
+Examples in `Chapter_12_Strings/` cover:
+
+- `string.js`: character codes and access, negative indexes with `at()` and `slice()`, string searching, and template literals.
+- `Strings_miscelaneous.js`: replacing text, extracting substrings, checking prefixes/suffixes and containment, and splitting strings.
+- `AIRegex.js`: regex matching and flags, common pattern syntax, searching, replacing, splitting, and retrieving all matches.
+- `new.js`: counts vowels and non-vowels in a sample string, then compares two strings after sorting their characters as an anagram check.
 
 ### Chapter 13: Objects
 
@@ -84,6 +106,20 @@ Examples in `Chapter_13_Objects/` cover:
 - `Objects.js`: creates an object and reads its properties with dot and bracket notation.
 - `Objects_Copy.js`: compares assigning an object reference, making a shallow copy with spread syntax, and making a deep copy with `structuredClone()`.
 - [`ELI5/Objects_Copy_Explained.html`](ELI5/Objects_Copy_Explained.html): a visual, beginner-friendly walkthrough of how those copies and their nested objects behave.
+
+### Additional array and pattern examples
+
+Examples in `MultiDimensionalArray/` cover:
+
+- `MDArrays.js`: declares a 2D array, accesses an element by row and column, and loops through every element with nested `for` loops.
+- `Array_func.js`: uses `map()` and `reduce()` to calculate row and column totals for a 2D array.
+- `Patterns.js`: prints increasing and decreasing triangles and centered and inverted star pyramids.
+
+`Chapter_8_Arrays/Lexicographic_Explain.md` explains lexicographic sorting and why numeric array sorting requires a comparator.
+
+### ELI5 skill and evaluation workspace
+
+`ELI5/` contains a Claude Code skill that adapts explanations to different audiences, along with its own setup and usage guide in [`ELI5/README.md`](ELI5/README.md). The `ELI5/eli5-workspace/` directory contains evaluation cases, a runner, tests, and evaluation documentation.
 
 ## Running the examples
 
@@ -95,6 +131,9 @@ node .\Chapter_4_Operators\IncrementOperatorTask.js
 node .\Chapter_06_Statements\Switch.js
 node .\Chapter_8_Arrays\Array_Check.js
 node .\Chapter_8_Arrays\Slicing.js
+node .\MultiDimensionalArray\MDArrays.js
+node .\MultiDimensionalArray\Array_func.js
+node .\MultiDimensionalArray\Patterns.js
 node .\Chapter_9_Functions\Func.js
 ```
 
