@@ -1,6 +1,6 @@
 # Learn JavaScript
 
-A collection of JavaScript examples organized by topic, covering language fundamentals, operators, control flow, user input, variables and scope, closures, strings, arrays, functions, and objects. The repository also includes a visual object-copying guide and an ELI5 Claude Code skill with an evaluation workspace.
+A collection of JavaScript examples organized by topic, covering language fundamentals, operators, control flow, user input, variables and scope, closures, strings, arrays, functions, objects, callbacks, promises, and async/await. The repository also includes ES module examples, a Playwright test project, a visual object-copying guide, and an ELI5 Claude Code skill with an evaluation workspace.
 
 ## Contents
 
@@ -107,6 +107,26 @@ Examples in `Chapter_13_Objects/` cover:
 - `Objects_Copy.js`: compares assigning an object reference, making a shallow copy with spread syntax, and making a deep copy with `structuredClone()`.
 - [`ELI5/Objects_Copy_Explained.html`](ELI5/Objects_Copy_Explained.html): a visual, beginner-friendly walkthrough of how those copies and their nested objects behave.
 
+### Chapter 14: Callbacks
+
+Examples in `Chapter_14_Callback/` demonstrate synchronous callbacks and asynchronous callbacks using `setTimeout()`, including how execution continues while an asynchronous operation is waiting.
+
+### Chapter 15: Promises
+
+Examples in `Chapter_15_Promise/` cover creating and chaining promises, handling fulfillment and rejection, using `finally()`, and coordinating operations with `Promise.all()`.
+
+### Async/await
+
+Examples in `Async- await/` demonstrate `async` functions and `await`, comparing sequential operations with concurrent operations using `Promise.all()`. The directory also includes examples related to flaky asynchronous tests.
+
+### ES modules
+
+`Export-Import/` contains examples of importing and exporting values and functions between JavaScript modules, including a small logger module.
+
+### Playwright
+
+`Playwright/` is a separate TypeScript Playwright project. It includes sample browser tests, Chromium/Firefox/WebKit project configuration, and a GitHub Actions workflow for running the tests.
+
 ### Additional array and pattern examples
 
 Examples in `MultiDimensionalArray/` cover:
@@ -151,4 +171,13 @@ node .\Chapter_07_UserInputWays\PromptSync.js
 
 `Chapter_07_UserInputWays\UserInput.js` uses `prompt()`, which is provided by a browser rather than Node.js. Open that file in a browser-based JavaScript environment to enter a number and see the result.
 
-These are individual learning examples; there is no shared application entry point or automated test suite.
+To install the Playwright project dependencies and browser binaries, run these commands from the repository root:
+
+```powershell
+cd .\Playwright
+npm.cmd ci
+npx.cmd playwright install
+npx.cmd playwright test
+```
+
+The Playwright tests navigate to the public Playwright documentation site. The learning examples are independent scripts and do not share an application entry point.
