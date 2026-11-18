@@ -119,6 +119,22 @@ Examples in `Chapter_15_Promise/` cover creating and chaining promises, handling
 
 Examples in `Async- await/` demonstrate `async` functions and `await`, comparing sequential operations with concurrent operations using `Promise.all()`. The directory also includes examples related to flaky asynchronous tests.
 
+### Object-oriented programming
+
+Examples in `OOPS-Constructors/` cover constructor parameters, object initialization, private fields, and static properties:
+
+- `Constructors.js` creates credential objects and demonstrates a private API key with `getAPI()`.
+- `Eg2.js` uses constructors to initialize multiple car objects.
+- `Static.js` tracks test counts and passing tests through static properties.
+
+Examples in `OOPS-Encapsulation/` demonstrate encapsulation with private fields and public getter/setter methods. `Bank_encap.js` uses private account data and validated access methods; `Encapsulation.js` shows a private-field pattern. The `IQ_1.js` through `IQ_5.js` files contain related interview-style examples.
+
+Examples in `OOPS-Inheriance_Single/` demonstrate single inheritance with `extends`, shared parent behavior, constructors, and `super`:
+
+- `Eg1.js` shows a child class calling methods from its parent class.
+- `Super.js` uses `super(name)` in a child constructor and `super.foo()` to call a parent method.
+- `Eg2.js`, `Eg3.js`, `Eg4.js`, `MoreThanOnechild.js`, and `parentchildsamemethod.js` cover additional parent/child behavior.
+
 ### ES modules
 
 `Export-Import/` contains examples of importing and exporting values and functions between JavaScript modules, including a small logger module.
